@@ -115,6 +115,7 @@ function setup() {
   function weatherAsk(){
   var url = api + input.value() + apiKey + units;
   loadJSON(url, gotData);
+  console.log('working weather');
 
 }
 
@@ -135,50 +136,61 @@ function draw() {
 
     if (temp < 10){var code= color(0, 0, 0);
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
+      
       else if
 
       
-        ((temp > 20)&&(temp < 30)){ code = color(188, 188, 188);
+        ((temp > 20)&&(temp < 30)){ code = color('#bcbcbc');
       fill(c);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else if
 
-        ((temp > 30)&&(temp < 40)){ code = color(255, 255, 255);
+        ((temp > 30)&&(temp < 40)){ code =  color('#ffffff');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else if
 
-      ((temp > 40)&&(temp < 50)){ code = color(66, 134, 24);
+      ((temp > 40)&&(temp < 50)){ code =  color('#428618');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);console.log('code');
+    }
       else if
-        ((temp > 50)&&(temp < 60)){ code = color(148, 255, 24);
+        ((temp > 50)&&(temp < 60)){ code =  color('#94ff18');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
-      else if
-
-        ((temp > 60)&&(temp < 70)){ code = color(255, 225, 0);
-      fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else if
 
-        ((temp > 80)&&(temp < 90)){ code = color(255, 165, 0);
+        ((temp > 60)&&(temp < 70)){ code = color('#ffe100');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else if
 
-        ((temp > 90)&&(temp < 100)){ code = color(255, 72, 0);
+        ((temp > 80)&&(temp < 90)){ code =  color('#ffa500');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else if
 
-        (temp > 100){ code = color(255, 0, 0);
+        ((temp > 90)&&(temp < 100)){ code = color('#ff4800');
       fill(code);
-      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);}
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
+      else if
+
+        (temp > 100){ code =  color('#ff0000');
+      fill(code);
+      ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
+    console.log('code');}
       else
 
   rect(10,100, weather.main.temp, weather.main.temp);
+
 
 
 }
