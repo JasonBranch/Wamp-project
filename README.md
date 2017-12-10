@@ -9,12 +9,16 @@ sketch.js
 Files: index.html : input button for location "New York" "Miami" etc
 
 run WsServer in terminal using node "wsServer.js portname" to see arduino data in browser
-
-Currently can only link one js file to index.html either sketch or WsServer
+WsServer use web socket to set up a server at port 8081.
 
 
 WsServer.js file has sketch.js file in it also beginning at 
+
 // =================================================
 // new color send 
 // =================================================
+
 Sketch.js : p5 code calling api for current weather and changing color based on temperature
+
+
+Currently can only link one js file to index.html either sketch or WsServer
