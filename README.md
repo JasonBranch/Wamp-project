@@ -16,8 +16,11 @@ This file currently works with sketch.js to visualize weather and color based on
 
 
 WsServer is a file that sets up a websocket to see arduino data in the browser.
+
 run WsServer in terminal using node "wsServer.js portname" to see arduino data in browser.
+
 If testing this delete or comment out code below var = weather;
+
 WsServer use web socket to set up a server at port 8081.
 
 
