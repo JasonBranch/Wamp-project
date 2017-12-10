@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
+ <script type="text/javascript">
+ </script>
+ 
+		<title>WEATHER BOX</title>
+	</head>
+
+	<body>
+
+
+
+		<legend>Input your city</legend>
+						<ul class="list-reset">
+							<li class="form-field">
+								<label for="city-search">City Name</label>
+								<input type="text" id="city-search" placeholder="e.g. Brooklyn, NY">
+							</li>
+
+							<li class="form-field">
+								<label for="latitude">Latitude</label>
+								<input type="text" id="latitude" placeholder="e.g. 40.6781784" required>
+							</li>
+
+							<li class="form-field">
+								<label for="longitude">Longitude</label>
+								<input type="text" id="longitude" placeholder="e.g. -73.9441579" required>
+							</li>
+
+						</ul>
+						<button for="submit">Get Weather</button>
+
+		<script type="text/javascript">
+		var text;     // variable for the text div you'll create
+		var socket = new WebSocket("ws://localhost:8081");
+
+		function setup() {
+			createCanvas(1000,1000);
+
+			// The socket connection needs two event listeners:
+	   socket.onopen = openSocket;
+	   socket.onmessage = showData;
+	  
+	 
+	   //make a new div and position it at 10, 10:
+	   text = createDiv("Data from aruduino:");
+	   text.position(200,0);
+	 //   weathertext = createDiv("Input your Location");
+	 //   weathertext.position(10,40);
+
+
+
+	 //   citynametext = createDiv("Input your City");
+	 //   citynametext.position(10,65);
+		// citynametext.style("color:#000; font-size:9pt;");
+
+		// var citysearch = createInput("e.g. Brooklyn, NY");
+		// citysearch.position(100, 65);
+
+
+	 //   latitudetext = createDiv("Latitude");
+	 //   latitudetext.position(10,85);
+		// latitudetext.style("color:#000; font-size:9pt;");
+
+		// var latitude = createInput("e.g. 40.6781784");
+		// latitude.position(100, 85);
+
+ 	// 	longitudetext = createDiv("Longitude");
+	 //   longitudetext.position(10,105);
+		// longitudetext.style("color:#000; font-size:9pt;");
+
+		// var longitude = createInput("e.g. -73.9441579");
+		// longitude.position(100, 105);
+
+		// getweather = createButton('Get Weather');
+  // 		getweather.position(100, 125);
+  // 		getweather.mousePressed(weatherReport);
+}
+
+
+   function openSocket() {
+    text.html("Pocket open");
+    socket.send("Nello server");
+    console.log('reading');
+  }
+
+
+ 
+function showData(result) {
+    // when the server returns, show the result in the div:
+    text.html("Sensor needing:" + result.data);
+    xPos = int(result.data);        // convert result to an integer
+    text.position(xPos, 10);        // position the text
+  }
+
+
+// =================================================
+// API DECLARATION/HEAVY LIFTING, CLIENT SIDE JS?
+// =================================================
+
+
+
+// =================================================
+// Get Weather Button Event
+// =================================================
+function weatherReport(latitude, longitude) {
+	// variables config for coordinates, url and api key
+	// latitude and longitude are accepted arguments and passed
+	// once a user has submitted the form.
+	var apiKey       = '2b279c1401ac15284aa23237cb6606f3',
+			url          = 'https://api.darksky.net/forecast/',
+			lati         = latitude,
+			longi        = longitude,
+			api_call     = url + apiKey + "/" + lati + "," + longi + "?extend=hourly&callback=?";
+
+
+			function(forecast) {
+
+		// Loop thru hourly forecasts
+		for(var j = 0, k = forecast.hourly.data.length; j < k; j++) {
+			var hourly_date    = new Date(forecast.hourly.data[j].time * 1000),
+					hourly_day     = days[hourly_date.getDay()],
+					hourly_temp    = forecast.hourly.data[j].temperature;
+
+					for(var i = 0, l = forecast.daily.data.length; i < l - 1; i++) {
+
+			var date     = new Date(forecast.daily.data[i].time * 1000),
+					day      = days[date.getDay()],
+					skicons  = forecast.daily.data[i].icon,
+					time     = forecast.daily.data[i].time,
+					humidity = forecast.daily.data[i].humidity,
+					summary  = forecast.daily.data[i].summary,
+					temp    = Math.round(forecast.hourly.data[i].temperature),
+					tempMax = Math.round(forecast.daily.data[i].temperatureMax);
+
+
+		}
+
+}
+
+var button = submit;
+button.mousePressed(weatherAsk);
+// Get Weather Button Event
+function weatherAsk(e) {
+	var lat       = ('#latitude').value(),
+			long      = ('#longitude').value(),
+			city_name = ('#city-search').value()
+
+	// If the latitude and longitude inputs aren't empty
+	// then continue with the code. Otherwise report error to user.
+	if(lat && long !== '') {
+		e.preventDefault();
+
+		
+
+		// Fade the form out, submit the weather request,
+		// inject "new forecast" button, city name & forecast cards.
+		$('.form').fadeOut(100, function() {
+			weatherReport(lat, long);
+			$('.screen').append('<button id="back">New Forecast</button><h3 class="city">' + city_name + '</h3><ul class="list-reset fadein-stagger" id="forecast"></ul>');
+		});
+	}
+}
+
+
+
+
+
+// =================================================
+// Report City & AutoFill Coords
+// =================================================
+// KEY AIzaSyCsri7Uoq7OMImitXRbM8AKxAjO_crB1G8
+
+function insertGoogleScript() {
+	var google_api = document.createElement('script'),
+			api_key    = 'AIzaSyCsri7Uoq7OMImitXRbM8AKxAjO_crB1G8';
+
+	// Inject the script for Google's API and reference the initGoogleAPI
+	// function as a callback.
+	google_api.src = 'https://maps.googleapis.com/maps/api/js?key='+ api_key +'&callback=initGoogleAPI&libraries=places,geometry';
+	document.body.appendChild(google_api);
+}
+
+
+// SearchBox Method
+function initGoogleAPI() {
+	var autocomplete = new google.maps.places.SearchBox(document.querySelector("#city-search"));
+
+	autocomplete.addListener('places_changed', function() {
+		var place = autocomplete.getPlaces()[0];
+		document.querySelector("#latitude").value = place.geometry.location.lat();
+		document.querySelector("#longitude").value = place.geometry.location.lng();
+	});
+}
+
+insertGoogleScript();
+
+//=================================================
+//ENDING HEAVY LIFTING
+//=================================================
+//KEY AIzaSyCsri7Uoq7OMImitXRbM8AKxAjO_crB1G8
+
+		
+		</script>:
+
+
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+		<script src="index.js"></script>
+		
+	
+	</body>
+</html>
