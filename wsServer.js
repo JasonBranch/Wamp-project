@@ -55,9 +55,9 @@ function showError(error) {
   console.log('Serial port error: ' + error);
 }
 
-function sendToSerial(code) {
-  console.log("sending to serial: " + code);
-  myPort.write(code);
+function sendToSerial(data) {
+  console.log("sending to serial: " + data);
+  myPort.write(data);
 }
 
 // ------------------------ webSocket Server event functions
@@ -108,6 +108,7 @@ function setup() {
 
   var button =select('#submit');
   button.mousePressed(weatherAsk);
+  console.log('working weather');
 
   input = select('#city');
 } 
@@ -115,7 +116,7 @@ function setup() {
   function weatherAsk(){
   var url = api + input.value() + apiKey + units;
   loadJSON(url, gotData);
-  console.log('working weather');
+  
 
 }
 
