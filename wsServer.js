@@ -55,9 +55,9 @@ function showError(error) {
   console.log('Serial port error: ' + error);
 }
 
-function sendToSerial(data) {
-  console.log("sending to serial: " + data);
-  myPort.write(data);
+function sendToSerial(code) {
+  console.log("sending to serial: " + 'code');
+  myPort.write('code');
 }
 
 // ------------------------ webSocket Server event functions
@@ -143,48 +143,48 @@ function draw() {
       else if
 
       
-        ((temp > 20)&&(temp < 30)){ code = color('#bcbcbc');
+        ((temp > 20)&&(temp < 30)){ code = '#bcbcbc';
       fill(c);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-        ((temp > 30)&&(temp < 40)){ code =  color('#ffffff');
+        ((temp > 30)&&(temp < 40)){ code =  '#ffffff';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-      ((temp > 40)&&(temp < 50)){ code =  color('#428618');
+      ((temp > 40)&&(temp < 50)){ code =  '#428618';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);console.log('code');
     }
       else if
-        ((temp > 50)&&(temp < 60)){ code =  color('#94ff18');
+        ((temp > 50)&&(temp < 60)){ code =  '#94ff18';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-        ((temp > 60)&&(temp < 70)){ code = color('#ffe100');
+        ((temp > 60)&&(temp < 70)){ code = '#ffe100';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-        ((temp > 80)&&(temp < 90)){ code =  color('#ffa500');
+        ((temp > 80)&&(temp < 90)){ code =  '#ffa500';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-        ((temp > 90)&&(temp < 100)){ code = color('#ff4800');
+        ((temp > 90)&&(temp < 100)){ code = '#ff4800';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
       else if
 
-        (temp > 100){ code =  color('#ff0000');
+        (temp > 100){ code =  '#ff0000';
       fill(code);
       ellipse(weather.main.temp,weather.main.temp_max, weather.main.temp, weather.main.temp_max);
     console.log('code');}
